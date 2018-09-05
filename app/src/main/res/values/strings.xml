@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">gibbets-game</string>
+    <string name="home_text">Please, enter the keyword to be discovered</string>
+    <string name="home_button_text">Submit</string>
 </resources>
