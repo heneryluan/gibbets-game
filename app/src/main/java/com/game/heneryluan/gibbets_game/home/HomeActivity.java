@@ -1,5 +1,6 @@
-package com.game.heneryluan.gibbets_game.view;
+package com.game.heneryluan.gibbets_game.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,21 +9,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.game.heneryluan.gibbets_game.R;
-import com.game.heneryluan.gibbets_game.interfaces.IHomePresenter;
-import com.game.heneryluan.gibbets_game.interfaces.IHomeView;
-import com.game.heneryluan.gibbets_game.presenter.HomePresenter;
+import com.game.heneryluan.gibbets_game.game.GameActivity;
+import com.game.heneryluan.gibbets_game.mvp.HomeMVP;
 
 /**
  * HomeActivity class view
  *
  * @author heneryluan
  */
-public class HomeActivity extends AppCompatActivity implements IHomeView, View.OnClickListener {
+public class HomeActivity extends AppCompatActivity implements HomeMVP.ViewImpl, View.OnClickListener {
 
     private EditText editText;
     private Button button;
 
-    private IHomePresenter presenter;
+    private HomeMVP.PresenterImpl presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeView, View.O
     @Override
     public void bindAllViews() {
         editText = findViewById(R.id.home_edit_text);
-        button = findViewById(R.id.home_button);
+        button = findViewById(R.id.home_play_button);
     }
 
     /**
@@ -54,15 +54,17 @@ public class HomeActivity extends AppCompatActivity implements IHomeView, View.O
      */
     @Override
     public void startGameActivity() {
-        //TODO: implement start activity
+        Intent mIntent = new Intent(this, GameActivity.class);
+        mIntent.putExtra(KEYWORD_KEY, editText.getText().toString().toUpperCase());
+        startActivity(mIntent);
         Toast.makeText(this, "BUTTON PRESSED", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.home_button:
-                presenter.onHomeButtonClicked();
+            case R.id.home_play_button:
+                presenter.onHomePlayButtonClicked();
                 break;
         }
     }

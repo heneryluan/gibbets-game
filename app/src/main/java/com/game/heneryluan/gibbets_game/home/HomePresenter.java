@@ -1,23 +1,22 @@
-package com.game.heneryluan.gibbets_game.presenter;
+package com.game.heneryluan.gibbets_game.home;
 
-import com.game.heneryluan.gibbets_game.interfaces.IHomePresenter;
-import com.game.heneryluan.gibbets_game.interfaces.IHomeView;
+import com.game.heneryluan.gibbets_game.mvp.HomeMVP;
 
 /**
  * HomePresenter class presenter
  *
  * @author heneryluan
  */
-public class HomePresenter implements IHomePresenter {
+public class HomePresenter implements HomeMVP.PresenterImpl {
 
-    private IHomeView view;
+    private HomeMVP.ViewImpl view;
 
     /**
      * HomePresenter constructor method
      *
      * @param view
      */
-    public HomePresenter(IHomeView view) {
+    public HomePresenter(HomeMVP.ViewImpl view) {
         this.view = view;
     }
 
@@ -34,7 +33,7 @@ public class HomePresenter implements IHomePresenter {
      * {@inheritDoc}
      */
     @Override
-    public void onHomeButtonClicked() {
+    public void onHomePlayButtonClicked() {
         view.startGameActivity();
     }
 }
